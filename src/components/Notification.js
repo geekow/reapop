@@ -198,12 +198,13 @@ export class Notification extends Component {
       this._resumeTimer();
     }
 
+    const onMouseProp = timer ? {onMouseEnter: this._pauseTimer, onMouseLeave: this._resumeTimer} : {};
+
     return (
       <div
         className={className.wrapper}
         onClick={dismissible && !closeButton ? this._remove : null}
-        onMouseEnter={timer ? this._pauseTimer : null}
-        onMouseLeave={timer ? this._resumeTimer : null}
+	{...onMouseProp}
       >
         <div className={notificationClass}>
           {image
